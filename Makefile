@@ -22,7 +22,6 @@ clean:
 	@docker volume rm $$(docker volume ls -q) || true
 	@docker network rm $$(docker network ls -q) || true
 	rm -rf ./srcs/web/*
-	rm -rf ./srcs/database
 
 prune: clean
 	@docker system prune -a --volumes -f

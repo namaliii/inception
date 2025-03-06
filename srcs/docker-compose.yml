@@ -24,6 +24,7 @@ services:
       - mariadb
     volumes:
       - ./web:/var/www/html
+      - .env:/var/www/html/srcs/.env
     networks:
       - inception
     restart: always
@@ -33,15 +34,17 @@ services:
       context: ./requirements/mariadb
     container_name: mariadb
     environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wpuser
-      MYSQL_PASSWORD: wppass
-      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
     restart: always
+    env_file:
+      - .env
 
 networks:
   inception:
