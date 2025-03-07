@@ -6,7 +6,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./web:/var/www/html
+      - wordpress_files:/var/www/html
     depends_on:
       - wordpress
       - mariadb
@@ -21,8 +21,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - ./web:/var/www/html
-      - .env:/var/www/html/srcs/.env
+      - wordpress_files:/var/www/html
     networks:
       - inception
     restart: always
@@ -32,17 +31,15 @@ services:
       context: ./requirements/mariadb
     container_name: mariadb
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpass
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
     restart: always
-    env_file:
-      - .env
 
 networks:
   inception:

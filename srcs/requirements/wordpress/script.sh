@@ -1,6 +1,6 @@
 #!/bin/bash
-source /var/www/html/srcs/.env
 
+# Wait for MariaDB to be ready
 cd /var/www/html
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar

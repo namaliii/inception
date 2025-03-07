@@ -21,7 +21,7 @@ clean:
 	@docker rmi -f $$(docker images -qa) || true
 	@docker volume rm $$(docker volume ls -q) || true
 	@docker network rm $$(docker network ls -q) || true
-	rm -rf ./srcs/web/*
+	rm -rf ./data/mariadb/* ./data/wordpress/* -y -y
 
 prune: clean
 	@docker system prune -a --volumes -f
