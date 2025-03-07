@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:bullseye
 
 RUN apt update && apt upgrade -y && apt install -y \
     php-fpm \
@@ -16,6 +16,6 @@ ENV DB_PASS=${DB_PASS}
 ENV DB_HOST=${DB_HOST}
 
 COPY www.conf /etc/php/8.2/fpm/pool.d/.
-COPY script.sh .
-RUN chmod +x script.sh
-CMD ["./script.sh"]
+COPY script.sh /usr/local/bin/script.sh
+RUN chmod +x /usr/local/bin/script.sh
+CMD ["script.sh"]
