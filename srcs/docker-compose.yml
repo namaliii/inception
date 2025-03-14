@@ -1,22 +1,22 @@
 services:
   nginx:
-    build:
-      context: ./requirements/nginx
+    build: requirements/nginx/.
     container_name: nginx
+    depends_on:
+      - wordpress
+      - mariadb
     ports:
       - "443:443"
     volumes:
       - wordpress_files:/var/www/html
-    depends_on:
-      - wordpress
-      - mariadb
     networks:
       - inception
     restart: always
+    env_file:
+      - .env
 
   wordpress:
-    build:
-      context: ./requirements/wordpress
+    build: requirements/wordpress/.
     container_name: wp-php
     depends_on:
       - mariadb
@@ -25,22 +25,19 @@ services:
     networks:
       - inception
     restart: always
+    env_file:
+      - .env
 
   mariadb:
-    build:
-      context: ./requirements/mariadb
+    build: requirements/mariadb/.
     container_name: mariadb
-    environment:
-      - ./env
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
     restart: always
-
-networks:
-  inception:
-    driver: bridge
+    env_file:
+      - .env
 
 volumes:
   mariadb_data:
@@ -56,3 +53,6 @@ volumes:
       device: ./data/wordpress # /home/anamieta/data/wordpress
       o: bind
 
+networks:
+  inception:
+    driver: bridge
