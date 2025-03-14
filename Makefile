@@ -8,8 +8,8 @@ ENV_FILE := $(SRC_DIR)/.env
 build:
 	@docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file $(ENV_FILE) build
 
-up: build
-	@docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file $(ENV_FILE) up -d
+up:
+	@docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file $(ENV_FILE) up -d --force-recreate --build
 
 down:
 	@docker-compose -f $(SRC_DIR)/docker-compose.yml down
