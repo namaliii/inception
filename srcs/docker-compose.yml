@@ -2,6 +2,7 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
+    image: nginx
     depends_on:
       - wordpress
       - mariadb
@@ -18,6 +19,7 @@ services:
   wordpress:
     build: requirements/wordpress/.
     container_name: wp-php
+    image: wordpress
     depends_on:
       - mariadb
     volumes:
@@ -31,6 +33,7 @@ services:
   mariadb:
     build: requirements/mariadb/.
     container_name: mariadb
+    image: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -44,13 +47,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./data/mariadb # /home/anamieta/data/mariadb
+      device: /home/anamieta/data/mariadb
       o: bind
   wordpress_files:
     driver: local
     driver_opts:
       type: none
-      device: ./data/wordpress # /home/anamieta/data/wordpress
+      device: /home/anamieta/data/wordpress
       o: bind
 
 networks:

@@ -1,5 +1,5 @@
 SRC_DIR := srcs
-DATA_DIR := data
+DATA_DIR := /home/anamieta/data
 DB_DATA := $(DATA_DIR)/mariadb
 WP_DATA := $(DATA_DIR)/wordpress
 
