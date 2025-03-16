@@ -9,6 +9,7 @@ build:
 	@docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file $(ENV_FILE) build
 
 up:
+	@mkdir -p $(DB_DATA) $(WP_DATA)
 	@docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file $(ENV_FILE) up -d --force-recreate --build
 
 down:
