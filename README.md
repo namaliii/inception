@@ -1,5 +1,6 @@
 # Inception - Docker Infrastructure Project
 ![](inception.png)
+
 ## Description
 
 The **Inception** project is focused on creating a small infrastructure using several services running in isolated Docker containers, all managed via **Docker Compose**. The main objective is to design and configure a system composed of multiple interconnected services, which includes setting up a secure NGINX container, a WordPress container, and a MariaDB database container. The project aims to simulate a real-world environment where different services work together seamlessly, allowing for a more efficient development and deployment process.
@@ -33,6 +34,8 @@ This project allowed for the creation of an entire web infrastructure from scrat
 ### Setup
 
 To set up the project, make sure to configure your domain to point to the local IP address of your virtual machine. For example, if your login is `anamieta`, the domain `anamieta.42.fr` should redirect to your local machine's IP.
+
+Additionally, you need to create a `.env` file located in the `srcs` directory for everything to work properly. A sample `.env` file is provided in the `srcs` folder.
 
 ### Contact
 
